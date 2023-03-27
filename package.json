@@ -1,0 +1,21 @@
+{
+    "name": "gender-mag",
+    "version": "1.0.0",
+    "description": "",
+    "main": "controller.js",
+    "url": "https://cse256-sp2021.github.io/gender-mag/",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "sandbox": "node ./deploy/sandbox.js",
+        "pretty": "prettier --write \"./**/*.{ts,html}\"",
+        "serve": "browser-sync start --server --files",
+        "dev": "\"npm run serve\""
+    },
+    "devDependencies": {
+        "aws-sdk": "^2.860.0",
+        "browser-sync": "^2.26.13",
+        "prettier": "^2.2.1"
+    },
+    "author": "",
+    "license": "ISC"
+}

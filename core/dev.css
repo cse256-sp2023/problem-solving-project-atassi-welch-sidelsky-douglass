@@ -1,0 +1,89 @@
+@import url('banner.css');
+* {
+    margin: 0;
+    padding: 0
+}
+
+.top-banner-div {
+    margin: 0px 10px;
+}
+
+#mturk-top-banner-progress-bar-div {
+    flex-grow: 1;
+    margin-top: 6px;
+}
+
+#mturk-top-banner-progress-bar {
+    height: 20px;
+    background-color: lightcoral;
+    border: 1px solid rgb(248, 107, 91);
+    width: 100%;
+}
+
+#mturk-top-banner-control-button-group-div {
+    min-width: 135px;
+}
+
+.mturk-top-banner-control-button-group {
+    font-size: 20px;
+    color: black;
+    font-style: normal;
+    cursor: pointer;
+    background-color: lightskyblue;
+    border: 1px lightsteelblue;
+    border-radius: 20px;
+}
+
+.mturk-top-banner-control-button-group:hover {
+    background-color: rgb(100, 190, 247);
+}
+
+#mturk-top-banner-rewind {
+    padding: 5px 10px 5px 5px;
+}
+
+#mturk-top-banner-pause-play {
+    padding: 5px 10px;
+}
+
+#mturk-top-banner-fastforward {
+    padding: 5px 5px 5px 10px;
+}
+
+html,
+body {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#wrapper {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+#canvas {
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+#html-loc {
+    position: relative;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}

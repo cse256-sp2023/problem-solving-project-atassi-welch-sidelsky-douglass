@@ -1,0 +1,38 @@
+.file {
+    padding: 8;
+    border-bottom: 1px solid #dddddd;
+}
+
+.section {
+    margin-bottom: 5px;
+}
+
+.ui-selected { 
+    background: #007fff; 
+    color: white; 
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+
+#mturk-top-banner-drop-down-content {
+    position: absolute;
+    width: 99%;
+    bottom: 0px;
+    top:unset;
+    left: 0;
+    background-color: #eee;
+    z-index: 100;
+    padding: 10px 10px 10px 10px;
+    border-left: 1px orange solid;
+    border-right: 1px orange solid;
+    border-top: 1px orange solid;
+}
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}

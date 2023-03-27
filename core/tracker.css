@@ -1,0 +1,30 @@
+@import url('banner.css');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+#html-loc {
+    position: relative;
+    z-index: 0;
+}
+
+.top-banner-button {
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(248, 126, 81);
+    border: 1px rgb(255, 97, 40) solid;
+}
+
+#top-banner-info {
+    color: transparent;
+}
+
+.top-banner-button:hover {
+    background-color: rgb(255, 97, 40);
+}

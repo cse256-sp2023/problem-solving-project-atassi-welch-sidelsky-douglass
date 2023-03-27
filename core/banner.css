@@ -1,0 +1,171 @@
+#mturk-top-banner {
+    background-color: orange;
+    display: block;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+span {
+    box-sizing: border-box;
+}
+
+#mturk-top-banner-span-outer {
+    width: 100%;
+    padding: 5px 20px 5px 10px;
+    clear: both;
+    display: inline-flex;
+}
+
+#mturk-top-banner-span {
+    height: 33px;
+    width: 100%;
+    clear: both;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.mturk-top-banner-button {
+    font-size: 20px;
+    line-height: 10px;
+    float: right;
+    color: black;
+    font-style: normal;
+    cursor: pointer;
+    padding: 5px;
+    height: 31px;
+    background-color: rgb(248, 126, 81);
+    border: 1px rgb(255, 97, 40) solid;
+    border-radius: 8px;
+}
+
+#mturk-top-banner-back-div {
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+    clear: both;
+}
+
+#mturk-top-banner-back {
+    font-size: 20px;
+    line-height: 10px;
+    float: left;
+    color: black;
+    font-style: normal;
+    height: 31px;
+    padding: 5px;
+    border: 1px rgb(255, 97, 40) solid;
+    border-radius: 8px;
+}
+
+.mturk-top-banner-back-woh {
+    cursor: not-allowed;
+    background-color: rgb(248, 126, 81);
+}
+
+.mturk-top-banner-back-wh {
+    cursor: pointer;
+    background-color: rgb(248, 126, 81);
+}
+
+.mturk-top-banner-back-wh:hover {
+    background-color: rgb(255, 100, 44);
+}
+
+#mturk-top-banner-inner-span {
+    float: right;
+    height: 30px;
+    clear: both;
+    cursor: pointer;
+}
+
+#mturk-top-banner-text {
+    font-size: 20px;
+    line-height: 25px;
+    float: left;
+    color: black;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+}
+
+#mturk-top-banner-drop-down-content {
+    position: absolute;
+    width: 100%;
+    top: 43px;
+    left: 0;
+    display: none;
+    background-color: #eee;
+    z-index: 100;
+    padding: 10px 10px 10px 10px;
+    border-left: 1px orange solid;
+    border-right: 1px orange solid;
+    border-bottom: 1px orange solid;
+}
+
+#mturk-top-banner-drop-down-content h1 {
+    font-size: 20px;
+    color: black;
+    font-style: normal;
+    padding: 5px 5px;
+}
+
+#mturk-top-banner-drop-down-content h2 {
+    font-size: 18px;
+    color: black;
+    font-style: normal;
+    padding: 5px 5px;
+}
+
+#mturk-top-banner-drop-down-content p {
+    font-size: 20px;
+    color: black;
+    font-style: normal;
+    padding: 5px 5px;
+}
+
+#mturk-top-banner-drop-down-content strong {
+    font-size: 18px;
+    color: black;
+    font-style: bold;
+    padding: 5px 5px;
+}
+
+#mturk-top-banner-drop-down-content-color-action {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+}
+
+#mturk-top-banner-drop-down-content-restart-animation {
+    background-color: lightgray;
+    border-radius: 10px;
+    border: 0;
+    padding: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#mturk-top-banner-drop-down-content-log-file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+#mturk-top-banner-drop-down-content-label-file-input {
+    background-color: lightgray;
+    border-radius: 10px;
+    border: 0;
+    padding: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#mturk-top-banner-drop-down-content-label-file-input:focus {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}

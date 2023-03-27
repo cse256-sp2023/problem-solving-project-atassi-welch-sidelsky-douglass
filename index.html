@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <title>
+        MTurk
+    </title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js">
+    </script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link href="core/tracker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="fileperms_style.css" />
+
+</head>
+
+<body>
+    <div id="inner-body">
+
+        <div id="mturk-top-banner-drop-down-content">
+            <p id="scenario_context">
+                <!-- The user <code>employee3</code> has recently been fired.
+                Please remove this user entirely from the permission settings for <code>important_file.txt</code>. -->
+            </p>
+            <br />
+            <form action="https://www.mturk.com/mturk/externalSubmit" id="mturk-submit-form" method="POST">
+                <input id="assignment-id" name="assignmentId" type="hidden" />
+                <input id="hit-id" name="hitId" type="hidden" />
+                <label><input type="radio" name="finished_option" value="finished" required>I made the required
+                    permission changes.</label>
+                <br />
+                <label><input type="radio" name="finished_option" value="finished_caveats" required>I made the required
+                    permission changes, but there were some additional complications.</label>
+                <br />
+                Describe complications:
+                <br />
+                <textarea cols="80" name="task_response_complications" rows="2" id="text-area-complications"></textarea>
+                <br />
+                <label><input type="radio" name="finished_option" value="not_finished" required>I wasn't able to make
+                    the required changes.</label>
+                <br />
+                Describe why:
+                <br />
+                <textarea cols="80" name="task_response_unable" rows="2" id="text-area-unable"></textarea>
+                <input id="debug" name="debug" type="hidden" value="_0_0_" />
+                <input id="cognito" name="cognito" type="hidden" value="" />
+                <br />
+                <button class="top-banner-button" id="submit-json-data" type="submit">
+                    Submit
+                </button>
+            </form>
+            <br />
+        </div>
+        <div id="mturk-top-banner">
+            <span id="mturk-top-banner-span-outer">
+                <span id="mturk-top-banner-span">
+                    <div class="top-banner-div" id="mturk-top-banner-back-div">
+                        <button class="mturk-top-banner-back-woh mturk-top-banner-button" id="mturk-top-banner-back">
+                            Back
+                        </button>
+                    </div>
+                    <p id="mturk-top-banner-text">
+                        You are logged in as "administrator"
+                    </p>
+                    <span id="mturk-top-banner-inner-span">
+                        <span class="mturk-top-banner-button mturk-top-banner-back-wh footer"
+                            id="mturk-top-banner-arrow">
+                            <i class="fa fa-chevron-up" id="mturk-top-banner-drop-down-button" style="display: none;">
+                            </i>
+                            <i class="fa fa-chevron-down" id="mturk-top-banner-collapse-button">
+                            </i>
+                        </span>
+                    </span>
+                </span>
+            </span>
+        </div>
+        <div id="wrapper">
+            <div data-app="gender-mag" data-mode="tracker" id="html-loc" data-tag="">
+                <!-- div where file and folder structure will be generated:-->
+                <div id="filestructure"></div>
+                <!-- structure for Permission Entry dialog: -->
+
+                <div title="Permission Entry" id="permentry">
+                    <div id="perm_entry_inheritance_explanation" style="display:none" class="section">This permission is
+                        inherited from the parent object. Make changes here to override the inherited permissions.</div>
+                    <span id="perm_entry_name_text">Name: </span>
+                    <span id="perm_entry_username" class="ui-widget-content section"
+                        style="width:200px;display:inline-block;"></span>
+                    <button id="perm_entry_change_user" class="ui-button ui-widget ui-corner-all">Change...</button>
+                    <table id="perm_entry_table" class="ui-widget-content section">
+                        <tr id="perm_entry_header">
+                            <th id="perm_entry_header_p" width="99%">Permissions</th>
+                            <th id="perm_entry_header_allow">Allow</th>
+                            <th id="perm_entry_header_deny">Deny</th>
+                        </tr>
+                    </table>
+                </div>
+                <!-- structure for the Advanced dialog: -->
+                <div title="Advanced Security Settings" id="advdialog" style="overflow:hidden">
+                    <div id="advtabs">
+                        <ul id="advtabs_titles">
+                            <li id="advtab_title_permissions"><a href="#adv_permissions_tab"
+                                    id="adv_permissions_tab_elem">Permissions</a></li>
+                            <li id="advtab_title_owner"><a href="#adv_owner_tab" id="adv_owner_tab_elem">Owner</a></li>
+                            <li id="advtab_title_effective"><a href="#adv_effective_tab"
+                                    id="adv_effective_tab_elem">Effective Permissions</a></li>
+                        </ul>
+                        <div id="adv_permissions_tab">
+                            <div id="adv_perm_object_name" class="section">Object Name: <span
+                                    id="adv_perm_filepath"></span></div>
+                            <div id="adv_perm_entries_text">Permission entries:</div>
+                            <div id="adv_perm_table_container" style="height:100px;overflow-y:scroll"
+                                class="ui-widget-content section">
+                                <table id="adv_perm_table" width="100%">
+                                    <tr id="adv_perm_header">
+                                        <th id="adv_perm_header_type">Type</th>
+                                        <th id="adv_perm_header_name">Name</th>
+                                        <th id="adv_perm_header_permission">Permission</th>
+                                        <th id="adv_perm_header_inherited">Inherited from</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <button id="adv_perm_edit" class="ui-button ui-widget ui-corner-all">Edit...</button>
+                            <div id="adv_perm_inheritance_div">
+                                <input type="checkbox" id="adv_perm_inheritance" name="inherit">
+                                <label for="adv_perm_inheritance" id="adv_perm_inheritance_label">Include inheritable
+                                    permissions from this object's parent</label>
+                            </div>
+                            <div id="adv_perm_replace_child_div">
+                                <input type="checkbox" id="adv_perm_replace_child_permissions" name="replace_child">
+                                <label for="adv_perm_replace_child_permissions"
+                                    id="adv_perm_replace_child_permissions_label">Replace all child object permissions
+                                    with inheritable permissions from this object</label>
+                            </div>
+                        </div>
+                        <div id="adv_owner_tab">
+                            <div id="adv_owner_explanation" class="section">You can take or assign ownership of this
+                                object if you have the required permissions or privileges.</div>
+                            <div id="adv_owner_object_name" class="section">Object Name: <span
+                                    id="adv_owner_filepath"></span></div>
+                            <div id="adv_owner_current_owner_text">Current owner:</div>
+                            <div id="adv_owner_current_owner" class="ui-widget-content section"></div>
+                            <div id="adv_owner_change_owner_text">Change owner to:</div>
+                            <div id="adv_owner_user_list"></div>
+                            <button id="adv_owner_change_button" class="ui-button ui-widget ui-corner-all">Change
+                                Owner</button>
+                        </div>
+                        <div id="adv_effective_tab">
+                            <div id="adv_effective_object_name" class="section">Object Name: <span
+                                    id="adv_effective_filepath"></span></div>
+                            <div id="adv_effective_user_text">Group or user name:</div>
+                            <div id="adv_effective_current_user_line" class="section">
+                                <span id="adv_effective_current_user" class="ui-widget-content"
+                                    style="width: 80%;display: inline-block;">&nbsp</span>
+                                <button id="adv_effective_user_select"
+                                    class="ui-button ui-widget ui-corner-all">Select...</button>
+                            </div>
+                            <div id="adv_effective_effective_text">Effective permissions:</div>
+                            <div id="adv_effective_effective_list" class="ui-widget-content"
+                                style="height:150px;overflow-y:scroll"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- structure for the User Select dialog: -->
+                <div title="Select Users or Groups" id="user_select_dialog">
+                    <div id="user_select_container"></div>
+                </div>
+                <script src="model.js"></script>
+                <script src="test_model.js"></script>
+                <script id="config-script">
+                    const contexts = {
+                        add_full_permissions: 'The user <code>employee3</code> has recently been fired. Please remove this user entirely from the permission settings for <code>important_file.txt</code>.',
+                        add_new_user: 'The user <code>employee4</code> has just joined the team. You need to give them access to the folder <code>presentation_documents</code>. Their new permissions should be the same as the other employees.',
+                        intern_permissions: 'The user <code>intern</code> is a new intern joining the team. They already have read access to the folder <code>important_project</code>. In addition, they need to be able to read and write data, but <em>not</em> delete files, in the folder <code>intern_subproject</code>. Please change the permissions so that they can do this with any files in that folder.',
+                        let_ta_modify: 'The user <code>teaching_assistant</code> is a member of the group <code>students</code>. As the teaching assistant for a course, this user should have the ability to write and modify all files in the folder <code>Lecture_Notes</code>. Other students should be able to read all of these files, but not write or modify them. This was set up correctly at the beginning of the course. But now, for some reason, <code>teaching_assistant</code> is currently unable to modify the file <code>Lecture4.txt</code>. Find and fix the problem.',
+                        lost_inheritance: 'The <code>Lecture_Notes</code> folder was previously set up so that all students could read all the files in it, and the professor and teaching assistant could modify all the files. But now, some of the files are inaccessible to either the students or the instructors. Find and fix the problem.',
+                        remove_direct_permission: 'Your manager emailed you and asked to adjust permissions for the file <code>important_file.txt</code>, so that the user <code>employee3</code> is no longer able to make changes to the file.',
+                        remove_inherited_permission: 'Your manager emailed you and asked to adjust permissions for the file <code>important_file.txt</code>, so that the user <code>employee3</code> is no longer able to make changes to the file.',
+                        remove_user_with_inheritance: 'The user <code>employee3</code> has recently been fired. Please remove this user entirely from the permission settings for <code>important_file.txt</code>.',
+                        restrict_group_member: 'Your manager emailed you and asked to adjust permissions for the file <code>important_file.txt</code>, so that the user <code>employee3</code> is no longer able to make changes to the file. (All employees are members of the <code>employees</code> group)',
+                    };
+
+                    const params = new URLSearchParams(window.location.search);
+                    const tag = params.get('tag');
+
+                    const contextElem = document.getElementById('scenario_context');
+                    const context = contexts[tag];
+                    contextElem.dataset['tag'] = tag;
+                    contextElem.innerHTML = context;
+
+                    const xhrObj = new XMLHttpRequest();
+                    xhrObj.open('GET', './scenario-configs/' + tag + '.js', false);
+                    xhrObj.send('');
+                    const scriptTag = document.getElementById('config-script');
+                    eval(xhrObj.responseText);
+                </script>
+                <script src="controller.js"></script>
+                <script src="view_helper.js"></script>
+                <script src="view_baseline.js"></script>
+                <script src="view.js"></script>
+            </div>
+        </div>
+    </div>
+    <script id="log_model_script" src="core/entry_model.js">
+    </script>
+    <script id="page_history_script" src="core/page_history.js">
+    </script>
+    <script id="user_data_model_script" src="core/user_data_model.js">
+    </script>
+    <script id="script-added-for-256" src="core/tracker.js">
+    </script>
+</body>
+
+</html>

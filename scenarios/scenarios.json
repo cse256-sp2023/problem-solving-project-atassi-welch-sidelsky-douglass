@@ -1,0 +1,74 @@
+[
+    {
+        "scenario": "Your manager emailed you and asked to adjust permissions for the file <code>important_file.txt</code>, so that the user <code>employee3</code> is no longer able to make changes to the file.",
+        "question": "If appropriate, type in a short reply to your manager (e.g. \"I removed the permission, but I also changed… \")",
+        "pages": "",
+        "inputType": "textarea",
+        "tag": "remove_inherited_permission",
+        "difficulty": "medium"
+    },
+    {
+        "scenario": "Your manager emailed you and asked to adjust permissions for the file <code>important_file.txt</code>, so that the user <code>employee3</code> is no longer able to make changes to the file.",
+        "question": "If appropriate, type in a short reply to your manager (e.g. \"I removed the permission, but I also changed… \")",
+        "pages": "",
+        "inputType": "textarea",
+        "tag": "remove_direct_permission",
+        "difficulty": "easy"
+    },
+    {
+        "scenario": "The user <code>new_manager</code> has just joined the team as a manager. You need to give them complete access to the folder <code>presentation_documents</code>, including the ability to change permissions on that folder.",
+        "question": "If appropriate, type in a short reply to your manager (e.g. \"I removed the permission, but I also changed… \")",
+        "pages": "",
+        "inputType": "textarea",
+        "tag": "add_full_permissions",
+        "difficulty": "easy-medium"
+    },
+    {
+        "scenario": "The user <code>employee4</code> has just joined the team. You need to give them access to the folder <code>presentation_documents</code>. Their new permissions should be the same as the other employees.",
+        "question": "If appropriate, type in a short reply to your manager (e.g. \"I removed the permission, but I also changed… \")",
+        "pages": "",
+        "inputType": "textarea",
+        "tag": "add_new_user",
+        "difficulty": "easy"
+    },
+    {
+        "scenario": "The user <code>intern</code> is a new intern joining the team. They already have read access to the folder <code>important_project</code>. In addition, they need to be able to read and write data, but <em>not</em> delete files, in the folder <code>intern_subproject</code>. Please change the permissions so that they can do this with any files in that folder.",
+        "question": "If appropriate, type in a short reply to your manager (e.g. \"I removed the permission, but I also changed… \")",
+        "pages": "",
+        "inputType": "textarea",
+        "tag": "intern_permissions",
+        "difficulty": "medium"
+    },
+    {
+        "scenario": "The user <code>teaching_assistant</code> is a member of the group <code>students</code>. As the teaching assistant for a course, this user should have the ability to write and modify all files in the folder <code>Lecture_Notes</code>. Other students should be able to read all of these files, but not write or modify them. This was set up correctly at the beginning of the course. But now, for some reason, <code>teaching_assistant</code> is currently unable to modify the file <code>Lecture4.txt</code>. Find and fix the problem.",
+        "question": "If appropriate, type in a short reply to your manager (e.g. \"I removed the permission, but I also changed… \")",
+        "pages": "",
+        "inputType": "textarea",
+        "tag": "let_ta_modify",
+        "difficulty": "hard"
+    },
+    {
+        "scenario": "Your manager emailed you and asked to adjust permissions for the file <code>important_file.txt</code>, so that the user <code>employee3</code> is no longer able to make changes to the file. (All employees are members of the <code>employees</code> group)",
+        "question": "If appropriate, type in a short reply to your manager (e.g. \"I removed the permission, but I also changed… \")",
+        "pages": "",
+        "inputType": "textarea",
+        "tag": "restrict_group_member",
+        "difficulty": "hard"
+    },
+    {
+        "scenario": "The <code>Lecture_Notes</code> folder was previously set up so that all students could read all the files in it, and the professor and teaching assistant could modify all the files. But now, some of the files are inaccessible to either the students or the instructors. Find and fix the problem.",
+        "question": "If appropriate, type in a short reply to your manager (e.g. \"I removed the permission, but I also changed… \")",
+        "pages": "",
+        "inputType": "textarea",
+        "tag": "lost_inheritance",
+        "difficulty": "hard"
+    },
+    {
+        "scenario": "The user <code>employee3</code> has recently been fired. Please remove this user entirely from the permission settings for <code>important_file.txt</code>.",
+        "question": "If appropriate, type in a short reply to your manager (e.g. \"I removed the permission, but I also changed… \")",
+        "pages": "",
+        "inputType": "textarea",
+        "tag": "remove_user_with_inheritance",
+        "difficulty": "medium"
+    }
+]
