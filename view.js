@@ -1,5 +1,25 @@
 // ---- Define your dialogs  and panels here ----
-
+ var epPanel = define_new_effective_permissions("epPanel", true)
+ var userSField = define_new_user_select_field("userSField", "select user", function(selected_user) {
+    $('#epPanel').attr('username', selected_user)
+  })
+var newDialog = define_new_dialog("newDialog", title='')
+  $('#sidepanel').append(epPanel)
+ $('#sidepanel').append(userSField)
+ $('#epPanel').attr('filepath', '/C/presentation_documents/presentation.ppt')
+ $('.perm_info').click(function(){
+    newDialog.dialog('open')
+    var p = $(this).attr('permission_name')
+    var fp = $('#epPanel').attr('filepath')
+    var un = $('#epPanel').attr('username')
+    var f = path_to_file[fp]
+    var u = all_users[un]
+    console.log("Username:" + un)
+    console.log("file path:" + fp)
+    console.log("permission: " + p)
+    var explanation = get_explanation_text(allow_user_action(f, u, p, true))
+    newDialog.text(explanation)
+})
 
 
 // ---- Display file structure ----
