@@ -1,4 +1,73 @@
+const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
+
 $(document).ready(function () {
+    let infoDiv = document.createElement("div");
+    infoDiv.id = "infoDiv";
+    let infoButton = document.createElement("button");
+    infoButton.id = "infoButton";
+
+    infoButton.addEventListener("click", function(event){
+        $(this).hide();
+        $("#expandedInfo").show();
+    }, false);
+
+    infoButton.textContent = "File Permission Info";
+    infoDiv.append(infoButton);
+    document.body.append(infoDiv);
+    
+    addCSS("#infoDiv{margin: auto; width: auto; bottom: 0; text-align: center;}");
+    addCSS("#infoButton{text-align: center; position: fixed; bottom: 0; padding: 6px;}");
+
+   
+    const expandedInfo = document.createElement("div");
+    expandedInfo.style.margin = "auto";
+    expandedInfo.style.position = "relative";
+    expandedInfo.style.padding = "32px";
+    expandedInfo.style.backgroundColor = "lightgray";
+    expandedInfo.id = "expandedInfo";
+    expandedInfo.style.display = "none";
+
+    const butt = document.createElement("button");
+    butt.textContent = "X";
+    butt.style.position = "absolute";
+    butt.style.right = "6px";
+    butt.style.top = "6px";
+    butt.addEventListener("click", function(event){
+        $("#expandedInfo").hide();
+        $("#infoButton").show();
+    }, false);
+    expandedInfo.appendChild(butt);
+
+
+    const ol = document.createElement("ol");
+    ol.style.listStyleType = "decimal";
+
+    
+    const li1 = document.createElement("li");
+    const li2 = document.createElement("ul");
+    li2.style.listStyleType = "lower-alpha";
+    li2.style.paddingLeft = "40px";
+
+
+    const a = document.createElement("li");
+    const b = document.createElement("li");
+    const li3 = document.createElement("li");
+    
+    li1.textContent = "Look at all of the direct (i.e. not inherited) permissions that are set on this file for this user OR for any groups that this user is part of (e.g. administrators).";    ;
+    a.textContent = "If any of these are set to deny permission, then permission is denied.";
+    b.textContent = "Otherwise, if any of these are set to allow the permission, then the action is allowed to happen";
+    li3.textContent = "If (a) there were no direct permissions for this [user, action] combination, AND (b) inheritance is turned on for this file/folder, repeat the process using the permissions for the parent folder.";
+    li2.appendChild(a);
+    li2.appendChild(b);
+
+    ol.appendChild(li1);
+    ol.appendChild(li2);
+    ol.appendChild(li3);
+
+    expandedInfo.appendChild(ol);
+    document.body.appendChild(expandedInfo);
+    
+
     function generateVisibleFilesList() {
         const visibleFiles = [];
     
