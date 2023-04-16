@@ -44,7 +44,7 @@ file_permission_users = define_single_select_list('permdialog_file_user_list', f
     grouped_permissions.attr('username', selected_user)
 })
 file_permission_users.css({
-    'height':'80px',
+    'height':'80px', 
 })
 
 // Make button to add a new user to the list:

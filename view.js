@@ -32,6 +32,7 @@ function slides(){
     $(".permbutton").css('border', '1px solid #c5c5c5');
     $(".permbutton").css('backgroundColor', '#f6f6f6');
     $("#sidepanel").css('border', 'none');
+    $("#sidepanel").css('padding', '10px');
     $("#subb").remove();
 
 
@@ -561,8 +562,9 @@ $(document).ready(function () {
         return fileSelect;
     }
 
+
     var epPanel = define_new_effective_permissions("epPanel", true);
-    var userSField = define_new_user_select_field("userSField", "select user", function (selected_user) {
+    var userSField = define_new_user_select_field("userSField", "Select User", function (selected_user) {
         $('#epPanel').attr('username', selected_user);
     });
 
@@ -651,11 +653,13 @@ $('.permbutton').click( function( e ) {
 
 // ---- Assign unique ids to everything that doesn't have an ID ----
 $('#html-loc').find('*').uniqueId();
-
+let fileSField = $('<div>Select a File:  </div>');
+fileSField.append(createFileSelectDropdown());
 $('#sidepanel').append(epPanelInstructions);
-$('#sidepanel').append(epPanel);
 $('#sidepanel').append(userSField);
-$('#sidepanel').append(createFileSelectDropdown());
+$('#sidepanel').append(fileSField);
+$('#sidepanel').append(epPanel);
+
 $('#epPanel').attr('filepath', '/C/presentation_documents/presentation.ppt');
 });
 

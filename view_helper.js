@@ -199,8 +199,7 @@ function define_new_effective_permissions(id_prefix, add_info_col = false, which
 
     // call update_effective_contents when either username or filepath changes:
     define_attribute_observer(effective_container, 'username', update_effective_contents)
-    define_attribute_observer(effective_container, 'filepath', update_effective_contents)
-    
+    define_attribute_observer(effective_container, 'filepath', update_effective_contents)    
     return effective_container
 }
 
